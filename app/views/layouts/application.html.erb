@@ -19,10 +19,33 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+    <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+ <body class="d-flex flex-column min-vh-100">
+
+  <%= render 'layouts/navigation' %>
+
+  <div class="container mt-4 ">
+    <% flash.each do |name, msg| %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= msg %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-grow-1">
     <%= yield %>
-  </body>
+  </main>
+
+  <%= render 'layouts/foooter' %>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
 </html>
